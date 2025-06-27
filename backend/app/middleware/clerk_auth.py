@@ -10,7 +10,7 @@ class ClerkAuthMiddleware(BaseHTTPMiddleware):
     def __init__(self, app):
         super().__init__(app)
         self.clerk_jwt_key = os.getenv("CLERK_JWT_VERIFICATION_KEY")
-        self.public_paths = ["/", "/health", "/docs", "/openapi.json", "/redoc"]
+        self.public_paths = ["/", "/health", "/docs", "/openapi.json", "/redoc", "/favicon.ico"]
 
     async def dispatch(self, request: Request, call_next):
         if request.url.path in self.public_paths:

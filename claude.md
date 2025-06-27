@@ -24,19 +24,38 @@
 
 ---
 
-## [ ] Fase 2: Funcionalidades Core con Autenticación
+## [✓] Fase 2: Funcionalidades Core con Autenticación
 
-### 1. CRUD de Clientes (Protegido por Usuario)
-- [ ] **API endpoints en Backend:**
-  - [ ] GET /api/clientes - Solo clientes del usuario autenticado
-  - [ ] POST /api/clientes - Asignar automáticamente `user_id`
-  - [ ] PUT /api/clientes/{id} - Verificar que el cliente pertenece al usuario
-  - [ ] DELETE /api/clientes/{id} - Verificar pertenencia
-- [ ] **Schemas Pydantic para validación**
-- [ ] **Interfaz en Frontend:**
-  - [ ] Lista filtrada por usuario actual
-  - [ ] Formularios protegidos con `useAuth()`
-  - [ ] Componentes de tabla y formularios
+### 1. [✓] CRUD de Clientes (Protegido por Usuario) - COMPLETADO
+- [✓] **API endpoints en Backend:**
+  - [✓] GET /api/clientes - Solo clientes del usuario autenticado
+  - [✓] POST /api/clientes - Asignar automáticamente `user_id`
+  - [✓] PUT /api/clientes/{id} - Verificar que el cliente pertenece al usuario
+  - [✓] DELETE /api/clientes/{id} - Verificar pertenencia
+  - [✓] GET /api/clientes/{id} - Obtener cliente específico con verificación
+- [✓] **Schemas Pydantic para validación:**
+  - [✓] ClienteBase, ClienteCreate, ClienteUpdate, ClienteResponse
+  - [✓] Validación de email con EmailStr
+  - [✓] Campos opcionales y requeridos correctamente definidos
+- [✓] **Interfaz en Frontend:**
+  - [✓] Lista filtrada por usuario actual con `useAuth()`
+  - [✓] Formulario de creación con validación
+  - [✓] Tabla responsiva con estados activo/inactivo
+  - [✓] Funcionalidad de eliminación con confirmación
+  - [✓] Manejo de errores y estados de carga
+  - [✓] API client TypeScript con tipos definidos
+
+**Archivos implementados:**
+- `backend/app/schemas/cliente.py` - Schemas Pydantic
+- `backend/app/api/clientes.py` - Endpoints CRUD protegidos
+- `frontend/lib/clientes.ts` - API client con tipos TypeScript
+- `frontend/app/clientes/page.tsx` - Interfaz completa con autenticación
+
+**Correcciones realizadas:**
+- [✓] Agregado `pydantic[email]` para validación de emails
+- [✓] Corregido middleware para permitir `/favicon.ico`
+- [✓] Actualizado `next.config.js` removiendo `appDir` deprecado
+- [✓] Agregado `/sign-in` y `/sign-up` a rutas públicas de Clerk
 
 ### 2. CRUD de Productos/Servicios (Protegido por Usuario)
 - [ ] **API endpoints con validación de pertenencia**
