@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+.env/
+
+# Archivos de VS Code
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración locales
+*.env
+*.local
+*.log
+
+# Bases de datos locales
+*.sqlite3
+
+# Archivos de testing o cobertura
+.coverage
+htmlcov/
+.tox/
+.nox/
+pytest_cache/
+
+# Paquetes
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Archivos de lock
+poetry.lock
+Pipfile.lock
+
+# Archivos de git merge/patch
+*.orig
+
+# Node (si usas algo de frontend)
+node_modules/
