@@ -57,10 +57,61 @@
 - [✓] Actualizado `next.config.js` removiendo `appDir` deprecado
 - [✓] Agregado `/sign-in` y `/sign-up` a rutas públicas de Clerk
 
-### 2. CRUD de Productos/Servicios (Protegido por Usuario)
-- [ ] **API endpoints con validación de pertenencia**
-- [ ] **Interfaz con datos del usuario actual**
-- [ ] **Gestión de tipos de IVA**
+### 2. [✓] CRUD de Productos/Servicios (Protegido por Usuario) - COMPLETADO
+- [✓] **API endpoints con validación de pertenencia**
+  - [✓] GET /api/productos - Solo productos del usuario autenticado
+  - [✓] POST /api/productos - Asignar automáticamente `user_id`
+  - [✓] PUT /api/productos/{id} - Verificar que el producto pertenece al usuario
+  - [✓] DELETE /api/productos/{id} - Verificar pertenencia
+  - [✓] GET /api/productos/{id} - Obtener producto específico con verificación
+- [✓] **Schemas Pydantic para validación:**
+  - [✓] ProductoBase, ProductoCreate, ProductoUpdate, ProductoResponse
+  - [✓] Validación de precio con Decimal y gt=0
+  - [✓] Validación de tipo_iva con pattern regex (0|4|10|21)
+  - [✓] Campos opcionales y requeridos correctamente definidos
+- [✓] **Interfaz con datos del usuario actual**
+  - [✓] Lista filtrada por usuario actual con `useAuth()`
+  - [✓] Formulario de creación con validación
+  - [✓] Tabla responsiva con información completa
+  - [✓] Funcionalidad de eliminación con confirmación
+  - [✓] Manejo de errores y estados de carga
+  - [✓] API client TypeScript con tipos definidos
+- [✓] **Gestión de tipos de IVA**
+  - [✓] Select con opciones: 0% (Exento), 4% (Superreducido), 10% (Reducido), 21% (General)
+  - [✓] Validación en backend y frontend
+  - [✓] Visualización del porcentaje en la tabla
+
+**Archivos implementados:**
+- `backend/app/schemas/producto.py` - Schemas Pydantic con validaciones
+- `backend/app/api/productos.py` - Endpoints CRUD protegidos por usuario
+- `frontend/lib/productos.ts` - API client con tipos TypeScript
+- `frontend/app/productos/page.tsx` - Interfaz completa con autenticación y formulario
+
+**Correcciones realizadas:**
+- [✓] Actualizadas validaciones Pydantic v2 (regex → pattern, decimal_places removido)
+- [✓] Backend tested e imports funcionando correctamente
+
+**✅ COMPLETADO - Configuración de Base de Datos:**
+- [✓] **Problema identificado:** Las tablas no existían en PostgreSQL
+- [✓] **Solución:** Configurar migraciones con Alembic
+- [✓] Inicializar Alembic en `/backend/` con `alembic init alembic`
+- [✓] Configurar `alembic.ini` con DATABASE_URL de PostgreSQL
+- [✓] Configurar `alembic/env.py` para importar modelos automáticamente
+- [✓] Crear migración inicial para `clientes`, `productos`, `facturas` y `lineas_factura`
+- [✓] Ejecutar migraciones con `alembic upgrade head` - tablas creadas correctamente
+- [✓] Probar inserción de datos - base de datos funcionando perfectamente
+
+**Archivos de migración creados:**
+- `backend/alembic.ini` - Configuración de migraciones
+- `backend/alembic/env.py` - Script de entorno configurado
+- `backend/alembic/versions/56a081a46bbd_initial_migration_clientes_and_.py` - Migración inicial
+
+**Tablas creadas en PostgreSQL:**
+- `clientes` - Con índices por user_id y email
+- `productos` - Con índices por user_id y código  
+- `facturas` - Con índices por user_id, cliente_id y número
+- `lineas_factura` - Con índice por factura_id
+- `alembic_version` - Control de versiones de migraciones
 
 ---
 
